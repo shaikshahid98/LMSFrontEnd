@@ -20,7 +20,7 @@ export class AdminmoduleComponent implements OnInit {
     if (sessionStorage) {
       this.adminid = sessionStorage.getItem("adminid");
       if (this.adminid != null) {
-        console.log("Ayyo moonjipooye");
+       
       }
     }
     this.get(this.adminid);

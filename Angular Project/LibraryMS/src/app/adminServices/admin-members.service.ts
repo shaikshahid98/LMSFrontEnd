@@ -8,7 +8,7 @@ import { IMember } from '../adminmodule/members/members';
 })
 export class AdminMembersService {
 
-  private urlMember: string = "http://localhost:5001/members";
+  private urlMember: string = "https://localhost:44332/LMS/members";
 
   constructor(private http: HttpClient) { }
 
@@ -44,17 +44,16 @@ export class AdminMembersService {
   }
 
   currentMember: IMember = {
-    id: null,
-    uname: '',
-    uadmid: null,
-    umail: '',
-    udep: '',
-    upassword: '',
-    ustatus: null,
-    urecstatus: null,
+    id: 1,
+    uname: 'shaik',
+    uadmid: 21,
+    umail: 'abcd@gmail.com',
+    udep: 'admin',
+    upassword: 'abcd1234',
+    ustatus: 9876,
+    urecstatus: 6552,
     ureqj: '',
     urecj: ''
-
     // uborrow: [null],
     // uowned: [null],
 

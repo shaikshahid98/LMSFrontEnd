@@ -22,8 +22,6 @@ export class UsermoduleComponent implements OnInit {
     }
     this.get(this.userid);
 
-
-
   }
 
 

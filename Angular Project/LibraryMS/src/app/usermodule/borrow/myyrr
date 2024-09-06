@@ -23,7 +23,7 @@ export class BorrowComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.badge)
-    this.getbyStatus("Old&bstatus=New&bstatus=Damaged");
+    this.getbyStatus("Old");
     if (sessionStorage) {
       this.userid = sessionStorage.getItem("userid");
       if (this.userid != null) { }

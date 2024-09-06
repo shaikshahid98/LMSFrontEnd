@@ -12,7 +12,6 @@ import { AdminMembersService } from 'src/app/adminServices/admin-members.service
   styleUrls: ['./borrow.component.css']
 })
 export class BorrowComponent implements OnInit {
-
   constructor(private bookSer: AdminBooksService, private userDet: UserOwnedService, private memberSer: AdminMembersService, ) {
 
   }
@@ -42,7 +41,7 @@ export class BorrowComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.badge)
-    this.getbyStatus("Old&bstatus=New&bstatus=Damaged");
+    this.getbyStatus("Old");
     if (sessionStorage) {
       this.userid = sessionStorage.getItem("userid");
       if (this.userid != null) { }
@@ -86,7 +85,9 @@ export class BorrowComponent implements OnInit {
   getbyStatus(fil: string) {
     console.log(fil);
     this.bookSer.getBookbyStatus(fil)
-      .subscribe(data => this.books = data);
+      .subscribe(data => {
+        this.books = data
+      });
   }
 
 
@@ -112,7 +113,7 @@ export class BorrowComponent implements OnInit {
 
       }
       else {
-        console.log("moonji");
+        console.log("");
         if ((this.requestedBooks.length + this.recievedBooks.length) < 3 || (this.requestedBooks.length + this.recievedBooks.length) == null) {
           this.requestedBooks.push(book);
           this.reqSave();
@@ -126,7 +127,7 @@ export class BorrowComponent implements OnInit {
       }
 
 
-      // this.badge = this.requestedBooks.length;
+       this.badge = this.requestedBooks.length;
     }
     else {
       if (book.bcopies == 0) {

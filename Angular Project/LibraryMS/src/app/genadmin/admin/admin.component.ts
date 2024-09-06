@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AdminAuthService } from 'src/app/adminServices/admin-auth.service';
+import { tap,map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -20,6 +21,20 @@ export class AdminComponent implements OnInit {
 
   get() {
     this.adminSer.getAdmins()
+    .pipe(
+      map(data=>{
+        const fildata = [];
+        data.forEach(mem =>{
+          const t1 = {
+            "amail": mem.email,
+            "apassword":mem.password,
+            "id" : mem.id
+          }
+          fildata.push(t1);
+        })
+        return fildata;
+      })
+    )
       .subscribe(data => this.admins = data);
   }
 

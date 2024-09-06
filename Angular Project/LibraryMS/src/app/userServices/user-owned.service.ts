@@ -8,7 +8,7 @@ import { IMember } from '../adminmodule/members/members';
   providedIn: 'root'
 })
 export class UserOwnedService {
-  public urlUser: string = "http://localhost:5001/members";
+  public urlUser: string = "https://localhost:44332/LMS/members";
   constructor(private http: HttpClient) { }
 
   getUser(id: number): Observable<IMember> {

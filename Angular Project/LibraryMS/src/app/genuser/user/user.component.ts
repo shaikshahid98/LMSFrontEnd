@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { AdminMembersService } from 'src/app/adminServices/admin-members.service';
 import { RouterModule, Router } from '@angular/router';
 import { from } from 'rxjs';
+import { tap,map } from 'rxjs/operators';
 import { IMember } from 'src/app/adminmodule/members/members';
+import { FileDetector } from 'protractor';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -13,7 +15,7 @@ export class UserComponent implements OnInit {
 
   constructor(private memberSer: AdminMembersService, private router: Router) { }
   user;
-  public members = [];
+  public members;
   temp;
 
   userSubmit(form: NgForm) {
@@ -25,8 +27,8 @@ export class UserComponent implements OnInit {
     console.log(this.temp);
 
     this.members.forEach(member => {
-      if (member.umail == this.user.username) {
-        if (member.upassword == this.user.password) {
+      if (member.email == this.user.username) {
+        if (member.password == this.user.password) {
           console.log("Success!!");
 
           console.log(member.id);
@@ -58,13 +60,34 @@ export class UserComponent implements OnInit {
 
 
   get() {
-    this.memberSer.getMember()
-      .subscribe(data => this.members = data);
+    // this.memberSer.getMember()
+    //   .subscribe(data => {
+    //     this.members = data
+    //     console.log(data);
+    //   });
   }
 
 
   ngOnInit() {
-    this.get();
+    this.memberSer.getMember()
+    .pipe(
+      map(data=>{
+        const fildata = [];
+        data.forEach(mem =>{
+          const t1 = {
+            "email": mem.umail,
+            "password":mem.upassword,
+            "id" : mem.id
+          }
+          fildata.push(t1);
+        })
+        return fildata;
+      })
+    )
+    .subscribe(data => {
+      this.members = data;
+      console.log('Assigned members:', this.members); // Logs the assigned data to members
+    });
 
   }
 

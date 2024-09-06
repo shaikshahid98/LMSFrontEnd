@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBook } from '../adminmodule/books/books';
+import { baseURL } from 'src/shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminBooksService {
 
-  private urlBook: string = "http://localhost:5001/books";
+  private urlBook: string = baseURL+'/books';
 
 
   constructor(private http: HttpClient) { }

@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     //local storage
     if (sessionStorage) {
       this.userid = sessionStorage.getItem("userid");
-      if (this.userid != null) { }
+      if (this.userid !== null) { }
     }
 
     // this.getUser();
@@ -43,7 +43,9 @@ export class ProfileComponent implements OnInit {
 
   get(userid: number) {
     this.userDet.getUser(userid)
-      .subscribe(data => this.userProfile = data);
+      .subscribe(data => {
+        this.userProfile = data
+      });
   }
 
   edit(member: IMember) {
