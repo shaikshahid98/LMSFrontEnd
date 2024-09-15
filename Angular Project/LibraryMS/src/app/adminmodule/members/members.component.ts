@@ -24,7 +24,9 @@ export class MembersComponent implements OnInit {
   adminMembersUp;
   temp;
   update(member: IMember) {
-    this.memberSer.updateMember(member).subscribe();
+    this.memberSer.updateMember(member).subscribe(data=> {
+      this.get();
+    });
   }
 
   get() {
@@ -44,7 +46,9 @@ export class MembersComponent implements OnInit {
 
 
     this.memberSer.putMember(this.temp).subscribe(
-      data => console.log('Success!', data),
+      data => {
+        this.get()
+      },
       error => console.error('Error!', error)
     );
 
@@ -57,7 +61,7 @@ export class MembersComponent implements OnInit {
     if (cnf == true) {
       this.memberSer.deleteMember(id).subscribe(
         (data: IMember) => {
-          // this.get();
+           this.get();
         }
       );
     }
@@ -99,7 +103,7 @@ export class MembersComponent implements OnInit {
       let cnf = confirm("Press Ok to save the form..");
       if (cnf == true) {
         this.put();
-        this.adminMembers.reset();
+        //this.adminMembers.reset();
       } else {
       }
     }

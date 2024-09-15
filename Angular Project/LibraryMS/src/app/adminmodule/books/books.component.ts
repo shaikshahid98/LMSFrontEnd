@@ -16,7 +16,7 @@ export class BooksComponent implements OnInit {
   adminBooks;
   put() {
     this.bookSer.putBook(this.adminBooks.value).subscribe(
-      data => console.log('Success!', data),
+      data => this.get(),
       error => console.error('Error!', error)
     );
   }
@@ -116,7 +116,7 @@ export class BooksComponent implements OnInit {
     if (cnf == true) {
       this.bookSer.deleteBook(id).subscribe(
         (data: IBook) => {
-          // this.get();
+         this.get();
         }
       );
     }
@@ -131,7 +131,6 @@ export class BooksComponent implements OnInit {
       let cnf = confirm("Press Ok to update the book..");
       if (cnf == true) {
         this.update(currentBook);
-
       }
       else {
 
@@ -144,7 +143,7 @@ export class BooksComponent implements OnInit {
   }
 
   update(book: IBook) {
-    this.bookSer.updateBook(book).subscribe();
+    this.bookSer.updateBook(book).subscribe(data => this.get());
   }
 
   edit(book: IBook) {

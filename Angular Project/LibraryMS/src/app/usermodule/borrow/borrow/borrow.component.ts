@@ -98,7 +98,7 @@ export class BorrowComponent implements OnInit {
     if (book.bcopies > 0) {
 
       if (this.requestedBooks == null) {
-        console.log("Vattayee")
+        console.log("addded to request")
 
         this.requestedBooks = this.requestedBooks || [];
         this.requestedBooks.push(book);

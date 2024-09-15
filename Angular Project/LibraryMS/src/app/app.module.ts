@@ -11,7 +11,6 @@ import { UsermoduleModule } from './usermodule/usermodule.module';
 import { BorrowSearchPipe } from './customPipes/borrow-search.pipe';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,7 @@ import { BorrowSearchPipe } from './customPipes/borrow-search.pipe';
     FullwidthadminModule,
     AdminmoduleModule,
     UsermoduleModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

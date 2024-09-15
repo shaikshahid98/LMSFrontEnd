@@ -53,7 +53,10 @@ export class ProfileComponent implements OnInit {
   }
 
   update(member: IMember) {
-    this.memberSer.updateMember(member).subscribe();
+    this.memberSer.updateMember(member).subscribe(member =>{
+      this.userProfile = member;
+    });
+   
   }
 
   getMember() {

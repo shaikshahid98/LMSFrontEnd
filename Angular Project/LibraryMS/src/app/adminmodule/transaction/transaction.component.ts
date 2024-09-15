@@ -14,7 +14,7 @@ export class TransactionComponent implements OnInit {
   public reqUsers;
   public recUsers;
   user
-  reqBooks;
+  reqBooks = [];
   recBooks = [];
   recBooks2;
   ngOnInit() {
@@ -58,13 +58,8 @@ export class TransactionComponent implements OnInit {
       this.user.urecstatus = 1;
     }
     this.user.urecj = JSON.stringify(this.recBooks);
-    this.memberSer.updateMember(this.user).subscribe();
-
-
     this.reqBooks.splice(index, 1);
     this.user.ureqj = JSON.stringify(this.reqBooks);
-    this.memberSer.updateMember(this.user).subscribe();
-
     if (this.reqBooks.length == 0 || this.reqBooks.length == null) {
       this.user.ustatus = 0;
     } else {
@@ -73,6 +68,21 @@ export class TransactionComponent implements OnInit {
     this.memberSer.updateMember(this.user).subscribe();
 
 
+  }
+
+  removeBook(m) {
+
+    let index = this.recBooks2.findIndex(obj => obj.btitle == m.btitle);
+    console.log(index);
+    this.recBooks2.splice(index, 1);
+    if (this.recBooks2.length == 0) {
+      this.user.urecstatus = 0;
+    } else {
+      this.user.urecstatus = 1;
+    }
+    this.user.urecj = JSON.stringify(this.recBooks2);
+    this.reqBooks.splice(index, 1);
+    this.memberSer.updateMember(this.user).subscribe();
   }
   rej(borrow) {
     console.log(borrow.id);
